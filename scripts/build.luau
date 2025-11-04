@@ -13,6 +13,5 @@ multitarget.build(
 	{
 		"src";
 	},
-	"LUA_ENV",
-	"pkg"
+	"LUA_ENV"
 )

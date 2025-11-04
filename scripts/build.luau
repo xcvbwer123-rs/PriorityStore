@@ -2,7 +2,7 @@
 
 local multitarget = require("../lune_packages/multitarget")
 
-multitarget.build(
+local result = multitarget.build(
 	"pesde.toml",
 	{
 		luau = true;
@@ -15,3 +15,9 @@ multitarget.build(
 	},
 	"LUA_ENV"
 )
+
+if result:isOk() then
+    print("Built successfully!")
+else
+    print("Error:", result:unwrapErr().message)
+end

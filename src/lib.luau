@@ -182,11 +182,14 @@ function storeImpl:set<T>(
 ): boolean
     local index = self._index[id]
 
-    if index == nil then
-        return false
-    end
+    if index ~= nil then
+        local heap = self._heap[index]
 
-    self._heap[index].value = value
+        if heap.value ~= value then
+            heap.value = value
+            return true
+        end
+    end
 
     return true
 end

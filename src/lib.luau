@@ -35,6 +35,9 @@ type StoreImpl<T = any> = {
     size: (
         self: Store<T>
     ) -> number;
+    destroy: (
+        self: Store<T>
+    ) -> ();
 }
 
 export type Store<T = any> = typeof(setmetatable({} :: {
@@ -240,6 +243,17 @@ end
 
 function storeImpl:size(): number
     return #self._heap
+end
+
+function storeImpl:destroy(): ()
+    setmetatable(self :: any, nil)
+
+    table.clear(self._heap)
+    table.clear(self._index)
+
+    self._heap = nil :: any
+    self._index = nil :: any
+    self._seq = nil :: any
 end
 
 return storeImpl

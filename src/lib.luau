@@ -46,6 +46,7 @@ export type Store<T = any> = typeof(setmetatable({} :: {
     _seq: number;
 }, {} :: StoreImpl<T>))
 
+local PriorityStore = {}
 local storeImpl = {} :: StoreImpl
 storeImpl.__index = storeImpl
 
@@ -117,7 +118,7 @@ local function heapifyDown<T>(
     end
 end
 
-function storeImpl.new<T>(): Store<T>
+function PriorityStore.new<T>(): Store<T>
     -- return setmetatable(
     --     {
     --         _heap = {} :: { Heap<T> },

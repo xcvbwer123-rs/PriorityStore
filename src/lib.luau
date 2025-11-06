@@ -257,4 +257,4 @@ function storeImpl:destroy(): ()
 	self._seq = nil :: any
 end
 
-return storeImpl
+return PriorityStore
